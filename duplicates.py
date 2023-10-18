@@ -41,12 +41,12 @@ similar_names_dict = {}
 
 # Iterate through names and check for similarity
 for i in range(len(names)):
+    similar_names_dict[names[i]] = []
     for j in range(i + 1, len(names)):
         if check_similarity(names[i], names[j]):
-            # Add similar names to the dictionary
-            if names[i] not in similar_names_dict:
-                similar_names_dict[names[i]] = set()
-            similar_names_dict[names[i]].add(names[j])
+            # Add similar names to the list
+            similar_names_dict[names[i]].append(names[j])
+
 
 # Create a DataFrame for the similar name groups
 output_df = pd.DataFrame(list(similar_names_dict.items()), columns=['MainName', 'SimilarNames'])
@@ -57,7 +57,7 @@ output_df = output_df.sort_values(by='MainName')
 # Create a new Excel file with the sorted DataFrame
 current_time = datetime.now().time()
 formatted_time = current_time.strftime('%H_%M_%S')
-output_file_path = f'C:\\Users\\USER\\Desktop\\projects\\hamal\\file_grouped{formatted_time}.xlsx'
+output_file_path = f'C:\\Users\\USER\\Desktop\\projects\\hamal\\{formatted_time}.xlsx'
 output_df.to_excel(output_file_path, index=False)
 
 print(f'Similar names grouped and saved to: {output_file_path}')
