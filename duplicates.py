@@ -23,7 +23,7 @@ def check_similarity(name1, name2):
         similarity_ratio = fuzz.ratio(name1, name2)
     
         # You can adjust the threshold based on your needs
-        fuzzy_similarity = similarity_ratio > 80
+        fuzzy_similarity = similarity_ratio > 90
         #similarity_ratio > 80  # Adjust the threshold as needed
 
         # Regular similarity check
@@ -33,9 +33,9 @@ def check_similarity(name1, name2):
         return False  # Skip non-string values
 
 # Load the Excel file into a DataFrame
-all_names_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\mondayCopy.xlsx'
+all_names_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\mondayCopy.xlsx'#change to your excal with all of the names
 df = pd.read_excel(all_names_path)
-names_to_check_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\Nim.xlsx'
+names_to_check_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\Nim.xlsx'#change to your excal with all of the people u want to filter with
 data = pd.read_excel(names_to_check_path)
 
 # Get the names from column A
@@ -63,7 +63,7 @@ output_df = pd.DataFrame(similar_names, columns=['Name1', 'Name2', 'name1rowID',
 # Create a new Excel file with the sorted DataFrame
 current_time = datetime.now().time()
 formatted_time = current_time.strftime('%H_%M_%S')
-output_file_path = f'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\{formatted_time}.xlsx'
+output_file_path = f'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\{formatted_time}.xlsx' #put ur output file 
 output_df.to_excel(output_file_path, index=False)
 
 print(f'Similar names saved and sorted to: {output_file_path}')
