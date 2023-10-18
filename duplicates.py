@@ -23,7 +23,7 @@ def check_similarity(name1, name2):
         similarity_ratio = fuzz.ratio(name1, name2)
     
         # You can adjust the threshold based on your needs
-        fuzzy_similarity = similarity_ratio > 87
+        fuzzy_similarity = similarity_ratio > 80
         #similarity_ratio > 80  # Adjust the threshold as needed
 
         # Regular similarity check
@@ -35,7 +35,7 @@ def check_similarity(name1, name2):
 # Load the Excel file into a DataFrame
 all_names_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\mondayCopy.xlsx'
 df = pd.read_excel(all_names_path)
-names_to_check_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\to_check.xlsx'
+names_to_check_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\Nim.xlsx'
 data = pd.read_excel(names_to_check_path)
 
 # Get the names from column A
