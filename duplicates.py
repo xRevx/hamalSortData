@@ -9,16 +9,20 @@ def check_similarity(name1, name2):
     if isinstance(name1, str) and isinstance(name2, str):
         if name1 == name2:
             return True
+
         components1 = set(name1.split())
         components2 = set(name2.split())
 
-        if len(components1) > 1 and len(components2) > 1:
-            # Count common substrings
-            common_substrings = len(components1.intersection(components2))
-
-            # Check if at least two identical substrings
-            if common_substrings >= 2:
-                return True
+        # Check if at least two identical substrings
+        common_substrings = len(components1.intersection(components2))
+        if common_substrings >= 2:
+            return True
+        else:
+            # Check fuzzywuzzy similarity between non-matching components
+            for comp1 in components1:
+                for comp2 in components2:
+                    if fuzz.ratio(comp1, comp2) > 75:
+                        return True
         # Use fuzz ratio to check similarity (including handling typos)
         similarity_ratio = fuzz.ratio(name1, name2)
     
@@ -35,7 +39,7 @@ def check_similarity(name1, name2):
 # Load the Excel file into a DataFrame
 all_names_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\mondayCopy.xlsx'#change to your excal with all of the names
 df = pd.read_excel(all_names_path)
-names_to_check_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\Nim.xlsx'#change to your excal with all of the people u want to filter with
+names_to_check_path = 'C:\\Users\\USER\\Desktop\\projects\\hamal\\data\\19.10.xlsx'#change to your excal with all of the people u want to filter with
 data = pd.read_excel(names_to_check_path)
 
 # Get the names from column A
